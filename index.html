@@ -109,9 +109,15 @@ h2.sec{font-family:var(--disp);font-size:26px;font-weight:400;letter-spacing:.05
 .dag{color:var(--gold-2)}
 
 /* ---------- cards ---------- */
-.card{border:1px solid var(--line-g2);padding:18px 20px;margin-top:16px}
-.card-g{border:1px solid var(--gold);padding:18px 20px;margin-top:16px}
-.panel-d{background:var(--deep);border:1px solid var(--line-c2);padding:16px 20px;margin-top:18px}
+.card{border:1px solid var(--line-g2);padding:18px 20px;margin-top:16px;border-radius:10px}
+.card-g{border:1px solid var(--gold);padding:18px 20px;margin-top:16px;border-radius:10px}
+.panel-d{background:var(--deep);border:1px solid var(--line-c2);padding:16px 20px;margin-top:18px;border-radius:10px}
+.hotel,.tonight,.call112{border-radius:10px}
+.onward{border-radius:10px;overflow:hidden}
+.cellgrid{border-radius:10px;overflow:hidden}
+.sheet .bx{border-radius:16px 16px 0 0}
+.sheet.top .bx{border-radius:0 0 16px 16px}
+#srchIn{border-radius:8px}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
 
 /* ---------- city / day structure ---------- */
@@ -864,7 +870,7 @@ h2.sec{font-family:var(--disp);font-size:26px;font-weight:400;letter-spacing:.05
   <div style="font-family:var(--disp);font-size:40px;color:var(--gold-2)"><a href="tel:112" style="color:inherit">112</a></div>
   <div style="font-size:14.5px;line-height:1.65;color:var(--body)">Police, ambulance and fire in all three countries — any phone, no SIM, English answered. Full emergency page behind the <b>112</b> button, top right, from anywhere in the app.</div>
 </div>
-<div style="display:grid;grid-template-columns:1fr;gap:1px;background:rgba(201,162,39,.25);border:1px solid rgba(201,162,39,.25);margin-top:18px">
+<div class="cellgrid" style="display:grid;grid-template-columns:1fr;gap:1px;background:rgba(201,162,39,.25);border:1px solid rgba(201,162,39,.25);margin-top:18px">
   <div style="background:var(--panel);padding:16px 20px"><div class="lbl-s">MONEY</div><div style="font-size:14px;line-height:1.65;color:var(--sub);margin-top:6px">Francs in Switzerland, euros in Austria, forints in Hungary. Cards near-universal; carry cash for mountain huts and small vendors.</div></div>
   <div style="background:var(--panel);padding:16px 20px"><div class="lbl-s">WEATHER</div><div style="font-size:14px;line-height:1.65;color:var(--sub);margin-top:6px">Cities 54–72°F, cold above 2,000m (41–50°F). Layers, a light waterproof, and shoes that forgive cobblestones.</div></div>
   <div style="background:var(--panel);padding:16px 20px"><div class="lbl-s">PLUGS</div><div style="font-size:14px;line-height:1.65;color:var(--sub);margin-top:6px">Switzerland runs its own Type J — a grounded Schuko will not fit, so bring a Swiss-specific adapter for anything chunky. Austria and Hungary take the ordinary European pin. All 230V; dual-voltage gear needs no converter.</div></div>
