@@ -56,6 +56,35 @@ svg.ic{display:inline-block;vertical-align:-2px;fill:none;stroke:currentColor;st
 .compact .rs,.compact .hd,.compact .panel-d,.compact .onward .on{display:none}
 .compact .row{padding:10px 0}
 
+/* ---------- morning-check links ---------- */
+.wx{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.wx .wxl{font-family:var(--disp);font-size:9.5px;letter-spacing:.18em;color:var(--mut);margin-right:2px}
+.wx a{display:inline-flex;align-items:center;gap:6px;font-family:var(--disp);font-size:9.5px;letter-spacing:.16em;color:var(--gold-2);border:1px solid rgba(201,162,39,.45);padding:7px 11px}
+.wx a:active{background:rgba(201,162,39,.14)}
+
+/* ---------- day-shape switch ---------- */
+.shapes{display:flex;border:1px solid rgba(201,162,39,.45);margin-top:14px}
+.shape-btn{flex:1;background:none;border:none;color:var(--mut);font-family:var(--disp);font-size:10px;letter-spacing:.16em;padding:11px 6px;cursor:pointer}
+.shape-btn.on{background:var(--gold);color:var(--panel)}
+body.fri-night [data-shape="classic"]{display:none}
+body:not(.fri-night) [data-shape="night"]{display:none}
+
+/* ---------- search ---------- */
+.sheet.top{align-items:flex-start}
+.sheet.top .bx{border-top:none;border-bottom:1px solid var(--gold);animation:shdn .3s cubic-bezier(.16,1,.3,1)}
+@keyframes shdn{from{transform:translateY(-24px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet.top .bx{animation:none}}
+#srchIn{width:100%;background:var(--panel);border:1px solid rgba(201,162,39,.45);color:var(--cream);font-family:var(--text);font-size:16px;padding:12px 14px;margin-top:16px}
+#srchIn::placeholder{color:var(--mut);font-style:italic}
+#srchIn::-webkit-search-cancel-button{-webkit-appearance:none}
+.sres{display:block;width:100%;text-align:left;background:none;border:none;border-top:1px solid var(--line-c2);padding:12px 2px;cursor:pointer;color:inherit;font-family:var(--text)}
+.sres:first-of-type{border-top:none}
+.sres .st{font-size:15px;font-weight:600;color:var(--ink);line-height:1.4}
+.sres .sc{font-family:var(--disp);font-size:9px;letter-spacing:.18em;color:var(--gold-2);margin-top:3px}
+.sres:active{background:rgba(201,162,39,.08)}
+.snone{font-size:14px;font-style:italic;color:var(--mut);padding:16px 2px}
+.flash{outline:2px solid var(--gold-2);outline-offset:5px}
+
 /* ---------- views ---------- */
 main{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
 .view{display:none}
@@ -195,6 +224,8 @@ h2.sec{font-family:var(--disp);font-size:26px;font-weight:400;letter-spacing:.05
 <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 11v5.4"/><path d="M12 7.6v.2"/></symbol>
 <symbol id="i-phone" viewBox="0 0 24 24"><path d="M7.5 4.2 9.8 6.9c.5.6.5 1.5-.1 2l-1.3 1.2c.8 1.9 2.6 3.8 4.5 4.8l1.2-1.4c.5-.6 1.4-.7 2-.2l2.8 2.2c.7.5.8 1.5.2 2.1l-1.4 1.5c-.7.7-1.7 1-2.6.7-5.2-1.7-9.4-6-10.9-11.2-.3-.9 0-1.9.7-2.6l1.5-1.4c.6-.6 1.6-.5 2.1.2Z"/></symbol>
 <symbol id="i-lines" viewBox="0 0 24 24"><path d="M4.5 6.2h15M4.5 10.1h15M4.5 14h9M4.5 17.9h9"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.6" cy="10.6" r="5.9"/><path d="M15.1 15.1 20 20"/></symbol>
+<symbol id="i-cam" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><circle cx="12" cy="12" r="3.4"/><path d="M12 3.4v2.2M12 18.4v2.2M3.4 12h2.2M18.4 12h2.2"/></symbol>
 <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5"/></symbol>
 <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5"/></symbol>
 </defs></svg>
@@ -203,6 +234,7 @@ h2.sec{font-family:var(--disp);font-size:26px;font-weight:400;letter-spacing:.05
 <header class="topbar">
   <div><div class="brand">H · &amp; · K</div><div class="dates">18 SEPT — 4 OCT · MMXXVI</div></div>
   <div style="display:flex;gap:8px">
+    <button class="sos" id="srchBtn" aria-label="Search the itinerary"><svg class="ic" width="15" height="15"><use href="#i-search"/></svg></button>
     <button class="sos" id="cmpBtn" aria-label="Hide descriptions" aria-pressed="false" title="Collapse descriptions"><svg class="ic" width="15" height="15"><use href="#i-lines"/></svg></button>
     <button class="sos" id="sosBtn" aria-label="Emergency information"><svg class="ic" width="14" height="14"><use href="#i-phone"/></svg>112</button>
   </div>
@@ -322,6 +354,12 @@ h2.sec{font-family:var(--disp);font-size:26px;font-weight:400;letter-spacing:.05
 </div>
 <div class="dayh" data-day="2026-09-22"><div class="t">DAY 3 · PEAK DAY — THE SCHILTHORN</div><div class="d">TUE · SEPT 22</div></div>
 <div class="hint" data-day="2026-09-22">Check the webcams at breakfast — the two days swap freely; give the clearer one to the peak.</div>
+<div class="wx" data-day="2026-09-22" data-when="2026-09-22T07:30">
+  <span class="wxl">MORNING CHECK</span>
+  <a href="https://schilthorn.roundshot.com/" target="_blank" rel="noopener"><svg class="ic" width="13" height="13"><use href="#i-cam"/></svg>SCHILTHORN CAM</a>
+  <a href="https://www.jungfrau.ch/en-gb/live/webcams/" target="_blank" rel="noopener"><svg class="ic" width="13" height="13"><use href="#i-cam"/></svg>JUNGFRAU CAMS</a>
+  <a href="https://www.meteoswiss.admin.ch/" target="_blank" rel="noopener">METEOSWISS</a>
+</div>
 <div style="margin-top:10px">
 <div class="row" data-day="2026-09-22" data-when="2026-09-22T09:30">
   <div class="rt">THE ASCENT</div>
@@ -447,6 +485,11 @@ h2.sec{font-family:var(--disp);font-size:26px;font-weight:400;letter-spacing:.05
 </div>
 <div class="dayh" data-day="2026-09-26"><div class="t">DAY 2 · PILATUS — THE GOLDEN ROUND TRIP</div><div class="d">SAT · SEPT 26</div></div>
 <div class="hint" data-day="2026-09-26">Leave the hotel by 9:10, at the dock by 9:25 — the timings below are booked. Galliker at 6:30.</div>
+<div class="wx" data-day="2026-09-26" data-when="2026-09-26T07:45">
+  <span class="wxl">MORNING CHECK</span>
+  <a href="https://pilatus.roundshot.com/" target="_blank" rel="noopener"><svg class="ic" width="13" height="13"><use href="#i-cam"/></svg>PILATUS CAM</a>
+  <a href="https://www.meteoswiss.admin.ch/" target="_blank" rel="noopener">METEOSWISS</a>
+</div>
 <div style="margin-top:10px">
 <div class="row" data-day="2026-09-26" data-when="2026-09-26T09:38">
   <div class="rt">9:38 · BOAT</div>
@@ -601,22 +644,43 @@ h2.sec{font-family:var(--disp);font-size:26px;font-weight:400;letter-spacing:.05
 </div>
 </div>
 <div class="dayh" data-day="2026-10-02"><div class="t">DAY 2 · THE BUDA SIDE</div><div class="d">FRI · OCT 2</div></div>
+<div class="shapes" data-day="2026-10-02" role="group" aria-label="Choose the shape of Friday">
+  <button class="shape-btn" data-shape-pick="classic">CLASSIC DAY</button>
+  <button class="shape-btn" data-shape-pick="night">CASTLE BY NIGHT</button>
+</div>
+<div class="hint" data-day="2026-10-02" style="margin-top:10px">Two Fridays, one switch — flip it when the day declares itself, and the schedule below follows. Szaletly holds the 6:30 table either way until released.</div>
 <div style="margin-top:10px">
-<div class="row" data-day="2026-10-02" data-when="2026-10-02T10:30">
+<div class="row" data-shape="classic" data-day="2026-10-02" data-when="2026-10-02T10:30">
   <div class="rt">10:30 AM</div>
   <div><div class="rh">The Rudas — under the Ottoman dome <a class="pin" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Rudas+Baths,+Budapest" aria-label="Rudas Baths in Maps"><svg class="ic" width="15" height="15"><use href="#i-pin"/></svg></a></div><div class="rs">The 1572 bath at Gellért Hill's foot: start on the rooftop panorama pool, slip under the lantern-pierced stone dome right at 11:00 when it goes co-ed. Bring towels and flip-flops; e-ticket a day ahead. <span class="bdg-m" style="margin:0 6px 0 2px">BACKUP</span>Széchenyi's grand outdoor pools, co-ed all day.</div></div>
 </div>
-<div class="row" data-day="2026-10-02" data-when="2026-10-02T14:00">
+<div class="row" data-shape="classic" data-day="2026-10-02" data-when="2026-10-02T14:00">
   <div class="rt">AFTERNOON</div>
   <div><div class="rh">Castle Hill, above and below <span class="dag">†</span> <a class="pin" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Fisherman%27s+Bastion,+Budapest" aria-label="Fisherman's Bastion in Maps"><svg class="ic" width="15" height="15"><use href="#i-pin"/></svg></a></div><div class="rs">The funicular up, Fisherman's Bastion for the panorama, the National Gallery in the palace — and beneath it all, Hospital in the Rock: a WWII hospital and Cold War bunker carved into the hill, toured hourly (book a slot). The fog-filled Labyrinth where Vlad was allegedly held is the campier cousin — cash only. Stay for dusk; walk down across the illuminated Chain Bridge.</div></div>
 </div>
-<div class="row" data-day="2026-10-02" data-when="2026-10-02T18:30">
-  <div class="rt">EVENING</div>
-  <div><div class="rh">21 or Szaletly — decide with the day <span class="bdg" style="margin-left:6px">SZALETLY HELD 6:30</span> <a class="pin" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Szaletly,+Stef%C3%A1nia+%C3%BAt+93,+Budapest" aria-label="Szaletly in Maps"><svg class="ic" width="15" height="15"><use href="#i-pin"/></svg></a></div><div class="rs">If Friday runs as Castle by Night: 21 – Magyar Vendéglő in the Castle District, open to 11 Fridays — book it once the day declares itself, even same-day, and release the other table. If the day runs classic: Szaletly, the lantern-lit villa by City Park with its beloved túrógombóc — a 6:30 table is held as the default. Nightcap: ring the bell at Black Swan's unmarked door — a short ride home from either; if it's full, Hotsy Totsy on Síp utca pours cocktails named after Budapest buildings, open nightly.</div></div>
+<div class="row" data-shape="classic" data-day="2026-10-02" data-when="2026-10-02T18:30">
+  <div class="rt">6:30 PM</div>
+  <div><div class="rh">Szaletly <span class="bdg" style="margin-left:6px">RESERVED</span> <a class="pin" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Szaletly,+Stef%C3%A1nia+%C3%BAt+93,+Budapest" aria-label="Szaletly in Maps"><svg class="ic" width="15" height="15"><use href="#i-pin"/></svg></a></div><div class="rs">The lantern-lit villa by City Park — modern Hungarian home cooking and the beloved túrógombóc; a short taxi from downtown. Nightcap: ring the bell at Black Swan's unmarked door; if it's full, Hotsy Totsy on Síp utca pours cocktails named after Budapest buildings, open nightly.</div></div>
 </div>
-<div class="row opt" data-day="2026-10-02" data-when="2026-10-02T12:00">
-  <div class="rt">A SECOND FRIDAY</div>
-  <div><div class="rh">Castle by night <span class="bdg-m" style="margin-left:6px">ALT</span></div><div class="rs">Lazy Pest midday, a 4:00 Hospital tour, golden hour at the Bastion, and the terraces nearly crowdless after the ticket desks close. Dinner at 21 – Magyar Vendéglő, then Rudas night bathing 10 PM–3 AM — the rooftop jacuzzi over the lit Danube. Trade: the National Gallery closes at 6 and drops out. The Dohány Synagogue is also Friday-only — it closes Saturdays for Shabbat.</div></div>
+<div class="row" data-shape="night" data-day="2026-10-02" data-when="2026-10-02T12:00">
+  <div class="rt">MIDDAY</div>
+  <div><div class="rh">Lazy Pest, and the Dohány Synagogue <a class="pin" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Doh%C3%A1ny+Street+Synagogue,+Budapest" aria-label="Dohány Synagogue in Maps"><svg class="ic" width="15" height="15"><use href="#i-pin"/></svg></a></div><div class="rs">A slow morning, the Jewish Quarter at strolling pace, and the Dohány Synagogue — Friday-only this trip, since it closes Saturdays for Shabbat. The trade this shape makes: the National Gallery closes at 6 and drops out.</div></div>
+</div>
+<div class="row" data-shape="night" data-day="2026-10-02" data-when="2026-10-02T16:00">
+  <div class="rt">4:00 PM</div>
+  <div><div class="rh">Hospital in the Rock <span class="dag">†</span> <a class="pin" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Hospital+in+the+Rock,+Budapest" aria-label="Hospital in the Rock in Maps"><svg class="ic" width="15" height="15"><use href="#i-pin"/></svg></a></div><div class="rs">The WWII hospital and Cold War bunker carved into Castle Hill, toured hourly — book the 4:00 slot. The fog-filled Labyrinth where Vlad was allegedly held is the campier cousin — cash only.</div></div>
+</div>
+<div class="row" data-shape="night" data-day="2026-10-02" data-when="2026-10-02T17:45">
+  <div class="rt">GOLDEN HOUR</div>
+  <div><div class="rh">The Bastion, nearly alone <a class="pin" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Fisherman%27s+Bastion,+Budapest" aria-label="Fisherman's Bastion in Maps"><svg class="ic" width="15" height="15"><use href="#i-pin"/></svg></a></div><div class="rs">Fisherman's Bastion and the terraces after the ticket desks close — the crowds gone with them. Stay for dusk as the monument lights come on across the river.</div></div>
+</div>
+<div class="row" data-shape="night" data-day="2026-10-02" data-when="2026-10-02T19:30">
+  <div class="rt">~7:30 PM</div>
+  <div><div class="rh">21 – Magyar Vendéglő <span class="bdg-o" style="margin-left:6px">BOOK SAME-DAY</span> <a class="pin" target="_blank" rel="noopener" href="https://maps.apple.com/?q=21+Magyar+Vend%C3%A9gl%C5%91,+Fortuna+utca+21,+Budapest" aria-label="21 Magyar Vendéglő in Maps"><svg class="ic" width="15" height="15"><use href="#i-pin"/></svg></a></div><div class="rs">Fortuna u. 21, right in the Castle District — refined-but-relaxed modern Hungarian, open to 11 on Fridays. Book it once this shape wins, even same-day, and release the Szaletly table. Nightcap: Black Swan's unmarked door, a short ride home; Hotsy Totsy if it's full.</div></div>
+</div>
+<div class="row" data-shape="night" data-day="2026-10-02" data-when="2026-10-02T22:00">
+  <div class="rt">10:00 PM</div>
+  <div><div class="rh">Rudas night bathing <a class="pin" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Rudas+Baths,+Budapest" aria-label="Rudas Baths in Maps"><svg class="ic" width="15" height="15"><use href="#i-pin"/></svg></a></div><div class="rs">Friday's late session, 10 PM–3 AM — the 1572 Ottoman dome by lantern light and the rooftop jacuzzi over the lit Danube. E-ticket a day ahead; towels and flip-flops still apply.</div></div>
 </div>
 </div>
 <div class="dayh" data-day="2026-10-03"><div class="t">DAY 3 · MARKET, PARLIAMENT &amp; FAREWELL</div><div class="d">SAT · OCT 3</div></div>
@@ -905,6 +969,16 @@ h2.sec{font-family:var(--disp);font-size:26px;font-weight:400;letter-spacing:.05
 </div>
 </div>
 
+<!-- ================= SEARCH SHEET ================= -->
+<div class="sheet top" id="srchSheet" role="dialog" aria-modal="true" aria-label="Search the itinerary">
+<div class="bx">
+  <button class="close" id="srchClose">CLOSE</button>
+  <div class="lbl" style="letter-spacing:.34em">FIND ANYTHING</div>
+  <input id="srchIn" type="search" placeholder="A place, a dinner, a day…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Search">
+  <div id="srchRes" style="margin-top:6px"></div>
+</div>
+</div>
+
 <style>
 .chips{position:sticky;top:calc(53px + env(safe-area-inset-top));z-index:55;display:flex;gap:8px;overflow-x:auto;padding:12px 18px;background:rgba(18,23,26,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-c2);scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
@@ -950,6 +1024,19 @@ function setCompact(v){
 }
 cmpBtn.addEventListener('click',function(){setCompact(!document.body.classList.contains('compact'))});
 try{if(localStorage.getItem(CMP)==='1')setCompact(true)}catch(e){}
+
+/* ---------- friday day shape ---------- */
+var FS='hk-fri-shape';
+function setDayShape(n){
+  document.body.classList.toggle('fri-night',n==='night');
+  try{localStorage.setItem(FS,n)}catch(e){}
+  $$('[data-shape-pick]').forEach(function(x){x.classList.toggle('on',x.dataset.shapePick===n)});
+}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-shape-pick]');
+  if(b)setDayShape(b.dataset.shapePick);
+});
+setDayShape((function(){try{return localStorage.getItem(FS)||'classic'}catch(e){return 'classic'}})());
 
 /* ---------- sos sheet ---------- */
 var sheet=$('#sosSheet');
@@ -1019,7 +1106,9 @@ function renderDay(s){
   nodes.forEach(function(n){
     var c=n.cloneNode(true);
     c.style.marginLeft='0';c.style.marginRight='0';
-    if(isToday&&c.dataset.when){
+    var shp=document.body.classList.contains('fri-night')?'night':'classic';
+    var offShape=c.dataset.shape&&c.dataset.shape!==shp;
+    if(isToday&&c.dataset.when&&!offShape){
       var w=c.dataset.when;var wt=new Date(+w.slice(0,4),+w.slice(5,7)-1,+w.slice(8,10),+w.slice(11,13),+w.slice(14,16));
       if(wt<now&&c.classList.contains('row')){c.classList.add('past')}
       else if(!nextFound&&wt>=now&&c.classList.contains('row')){nextFound=true;
@@ -1058,6 +1147,65 @@ renderDay(viewISO);
 
 /* refresh NEXT marker every minute while today is visible */
 setInterval(function(){if($('#view-today').classList.contains('on')&&viewISO===todayISO)renderDay(viewISO)},60000);
+
+/* ---------- search ---------- */
+var srchSheet=$('#srchSheet'),srchIn=$('#srchIn'),srchRes=$('#srchRes');
+function norm(x){return x.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+var IDX=[];
+$$('#view-journey .row').forEach(function(r){
+  var t=r.querySelector('.rh'),s=r.querySelector('.rs');
+  var m=META[r.dataset.day]||{};
+  IDX.push({el:r,view:'journey',shape:r.dataset.shape||'',title:(t?t.textContent:'').replace(/\s+/g,' ').trim(),body:s?s.textContent:'',ctx:(r.dataset.day?fmtHead(r.dataset.day)+' · ':'')+(m.city||'')});
+});
+$$('#view-journey .onward').forEach(function(r){
+  var t=r.querySelector('.lbl-s');
+  IDX.push({el:r,view:'journey',shape:'',title:(t?t.textContent:'').trim(),body:r.textContent,ctx:r.dataset.day?fmtHead(r.dataset.day):'TRAVEL'});
+});
+(function(){var city='';$$('#view-shop .shoph, #view-shop .chk').forEach(function(n){
+  if(n.classList.contains('shoph')){city=n.textContent.trim();return}
+  var b=n.querySelector('b');
+  IDX.push({el:n,view:'shop',shape:'',title:b?b.textContent.trim():'',body:n.textContent,ctx:'SHOPPING · '+city});
+})})();
+$$('#timedList .chk').forEach(function(n){
+  var t=n.querySelector('.tt'),w=n.querySelector('.tw');
+  IDX.push({el:n,view:'booked',shape:'',title:t?t.textContent.trim():'',body:n.textContent,ctx:'BOOKED · '+(w?w.textContent.trim():'')});
+});
+function doSearch(q){
+  q=norm(q.trim());
+  srchRes.innerHTML='';
+  if(q.length<2)return;
+  var shp=document.body.classList.contains('fri-night')?'night':'classic';
+  var hits=[];
+  IDX.forEach(function(it){
+    if(it.shape&&it.shape!==shp)return;
+    var ti=norm(it.title);
+    if(ti.indexOf(q)>=0)hits.push([0,it]);
+    else if(norm(it.body).indexOf(q)>=0)hits.push([1,it]);
+  });
+  hits.sort(function(a,b){return a[0]-b[0]});
+  if(!hits.length){var d=document.createElement('div');d.className='snone';d.textContent='Nothing found — try a shorter word.';srchRes.appendChild(d);return}
+  hits.slice(0,20).forEach(function(h){
+    var it=h[1];
+    var b=document.createElement('button');b.className='sres';
+    var st=document.createElement('div');st.className='st';st.textContent=it.title;
+    var sc=document.createElement('div');sc.className='sc';sc.textContent=it.ctx;
+    b.appendChild(st);b.appendChild(sc);
+    b.addEventListener('click',function(){goTo(it)});
+    srchRes.appendChild(b);
+  });
+}
+function goTo(it){
+  srchSheet.classList.remove('on');
+  show(it.view);
+  var y=it.el.getBoundingClientRect().top+window.pageYOffset-150;
+  window.scrollTo(0,Math.max(0,y));
+  it.el.classList.add('flash');
+  setTimeout(function(){it.el.classList.remove('flash')},1800);
+}
+srchIn.addEventListener('input',function(){doSearch(srchIn.value)});
+$('#srchBtn').addEventListener('click',function(){srchSheet.classList.add('on');srchIn.value='';srchRes.innerHTML='';setTimeout(function(){srchIn.focus()},80)});
+$('#srchClose').addEventListener('click',function(){srchSheet.classList.remove('on')});
+srchSheet.addEventListener('click',function(e){if(e.target===srchSheet)srchSheet.classList.remove('on')});
 
 /* ---------- service worker ---------- */
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
