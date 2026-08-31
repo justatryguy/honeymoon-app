@@ -759,7 +759,7 @@ h2.sec{font-family:var(--disp);font-size:26px;font-weight:400;letter-spacing:.05
 <div class="lbl" style="letter-spacing:.34em">EVERY TIMED MOMENT</div>
 <h2 class="sec">The Master List</h2>
 <div class="card-g" style="font-size:14px;line-height:1.65;color:var(--body)">
-  <b>The September 1 windows are secured.</b> The Legenda cruise (Oct 1, 6:20), Rosenstein (Oct 1, 8:00) and the Parliament tour (Oct 3, noon — check-in 11:30) are all booked. One week before departure, sweep this list and reconfirm every reserved table by email.
+  <b>One week before departure:</b> sweep this list and reconfirm every reserved table by email.
 </div>
 <div class="hint" style="margin-top:16px">Tick each item as it's booked, reconfirmed, or survived. Ticks stay on this phone.</div>
 <div style="margin-top:10px" id="timedList">
@@ -1146,9 +1146,6 @@ function renderDay(s){
     var c=document.createElement('div');c.className='count';
     c.innerHTML='<div class="n">'+days+'</div><div class="u">DAY'+(days===1?'':'S')+' TO WHEELS-UP</div>';
     body.insertBefore(c,body.firstChild);
-    var b=document.createElement('div');b.className='card-g';
-    b.innerHTML='<div class="lbl-s">BOOKINGS — ALL SECURED</div><div style="font-size:14px;line-height:1.65;color:var(--body);margin-top:8px">The <b>Legenda cruise</b>, <b>Rosenstein</b> and the <b>Parliament tour</b> are locked in. One week before departure: sweep the Booked list and reconfirm every reserved table by email.</div>';
-    body.insertBefore(b,body.children[1]);
   }
   if(todayISO>DAYS[DAYS.length-1]&&s===DAYS[DAYS.length-1]){
     var e=document.createElement('div');e.className='count';
