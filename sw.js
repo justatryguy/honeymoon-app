@@ -1,5 +1,5 @@
 /* The Wedding Journey — offline cache */
-const VERSION = 'hk-v9';
+const VERSION = 'hk-v10';
 const ASSETS = [
   './',
   'index.html',
